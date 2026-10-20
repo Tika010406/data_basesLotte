@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistem Pencarian Barang</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background-color: #f4f6f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #1f4e78;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>🔍 Cari Data Barang Lotte Mart</h2>
+      <input
+        type="text"
+        id="searchInput"
+        onkeyup="searchItem()"
+        placeholder="Ketik nama barang..."
+      />
+
+      <table id="itemTable">
+        <thead>
+          <tr>
+            <th>Nama Barang</th>
+            <th>Qty Ctn</th>
+            <th>Harga Jual</th>
+            <th>Total Harga</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Data dimasukkan secara dinamis -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const items = [
+        {
+          name: "3M SCOURER STAINLES 4 PCS",
+          qty: "0+2",
+          price: 16600,
+          total: 33200,
+        },
+        {
+          name: "BAYCLIN REGULER 4L",
+          qty: "6+1",
+          price: 77500,
+          total: 1937500,
+        },
+        {
+          name: "CHOICE L(B) SFT PACK 4X200'S",
+          qty: "0+2",
+          price: 47800,
+          total: 95600,
+        },
+        {
+          name: "KLEANER PEL KATUN SUMBU KLIP 16CM",
+          qty: "0+2",
+          price: 102500,
+          total: 205000,
+        },
+        {
+          name: "KLINPAK KANTONG SAMPAH 60X80CM 12 PCS",
+          qty: "0+3",
+          price: 55000,
+          total: 165000,
+        },
+        {
+          name: "KLINPAK KANTONG SAMPAH 100X120CM 5 PCS",
+          qty: "0+3",
+          price: 55000,
+          total: 165000,
+        },
+        {
+          name: "MAMA LEMON JERUK NIPIS POUCH 690gr/650gr",
+          qty: "0+8",
+          price: 8800,
+          total: 70400,
+        },
+        {
+          name: "MAMA LIME POUCH 690gr/650gr",
+          qty: "0+1",
+          price: 8800,
+          total: 8800,
+        },
+        {
+          name: "ONLY LOTTE SERBET STRIPE 55X55 3P",
+          qty: "0+4",
+          price: 12400,
+          total: 46900,
+        },
+        {
+          name: "SAVE EMBER ABU-ABU 6GLN",
+          qty: "0+2",
+          price: 18300,
+          total: 36600,
+        },
+        {
+          name: "SOS KARBOL CLASSIC PINE JRG 4/3.6L",
+          qty: "3+3",
+          price: 46500,
+          total: 697500,
+        },
+        {
+          name: "SOS PEMBERSIH LANTAI APPLE JERIGEN 5L",
+          qty: "3+3",
+          price: 53500,
+          total: 802500,
+        },
+        {
+          name: "TACO CUTTER SMALL CT78N 12PC",
+          qty: "0+2",
+          price: 17700,
+          total: 35400,
+        },
+        {
+          name: "YURI PORSTEX BOTOL 2000ML",
+          qty: "0+2",
+          price: 45500,
+          total: 91000,
+        },
+      ];
+
+      function renderTable(data) {
+        const tbody = document.getElementById("tableBody");
+        tbody.innerHTML = "";
+        data.forEach((item) => {
+          tbody.innerHTML += `<tr>
+            <td>${item.name}</td>
+            <td>${item.qty}</td>
+            <td>Rp ${item.price.toLocaleString("id-ID")}</td>
+            <td>Rp ${item.total.toLocaleString("id-ID")}</td>
+        </tr>`;
+        });
+      }
+
+      function searchItem() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const filtered = items.filter((item) =>
+          item.name.toLowerCase().includes(query),
+        );
+        renderTable(filtered);
+      }
+
+      // Tampilkan semua data saat pertama dibuka
+      renderTable(items);
+    </script>
+  </body>
+</html>
